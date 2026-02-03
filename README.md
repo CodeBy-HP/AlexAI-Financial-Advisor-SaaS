@@ -1,15 +1,8 @@
-<div align="center">
-
 # 🏦 Alex - AI Financial Planning Platform
 
 **Production-grade multi-agent system for intelligent portfolio analysis and retirement planning**
 
-<img src="https://img.shields.io/badge/Python-3.12-blue.svg" alt="Python">
-<img src="https://img.shields.io/badge/TypeScript-5.0-3178C6.svg" alt="TypeScript">
-<img src="https://img.shields.io/badge/Next.js-15.5-000000.svg" alt="Next.js">
-<img src="https://img.shields.io/badge/Terraform-IaC-7B42BC.svg" alt="Terraform">
-<img src="https://img.shields.io/badge/AWS-Serverless-FF9900.svg" alt="AWS">
-<img src="https://img.shields.io/badge/Azure_OpenAI-GPT--4o-0078D4.svg" alt="Azure OpenAI">
+<img src="https://img.shields.io/badge/Python-3.12-blue.svg" alt="Python"> <img src="https://img.shields.io/badge/TypeScript-5.0-3178C6.svg" alt="TypeScript"> <img src="https://img.shields.io/badge/Next.js-15.5-000000.svg" alt="Next.js"> <img src="https://img.shields.io/badge/Terraform-IaC-7B42BC.svg" alt="Terraform"> <img src="https://img.shields.io/badge/AWS-Serverless-FF9900.svg" alt="AWS"> <img src="https://img.shields.io/badge/Azure_OpenAI-GPT--4o-0078D4.svg" alt="Azure OpenAI">
 
 </div>
 
@@ -58,33 +51,9 @@ Built on AWS serverless with Terraform, powered by Azure OpenAI GPT-4o, and runn
 
 ### Job Lifecycle
 
-```mermaid
-stateDiagram-v2
-    [*] --> PENDING: User Creates Job
-    PENDING --> STARTED: SQS Triggers Planner
-    STARTED --> TAGGING: Missing Instrument Data
-    STARTED --> ANALYZING: All Data Present
-    TAGGING --> ANALYZING: Tagging Complete
-    
-    ANALYZING --> GENERATING: Parallel Agents Start
-    GENERATING --> FINALIZING: All Agents Complete
-    FINALIZING --> COMPLETE: Results Compiled
-    
-    STARTED --> FAILED: Agent Error
-    ANALYZING --> FAILED: Critical Failure
-    GENERATING --> PARTIAL: Some Agents Fail
-    PARTIAL --> COMPLETE: Salvageable Results
-    
-    COMPLETE --> [*]: Job Delivered
-    FAILED --> [*]: Error Reported
-    
-    note right of GENERATING
-        Report Writer
-        Chart Maker
-        Retirement Specialist
-        (Run in Parallel)
-    end note
-```
+<div align="center">
+ <img width="3322" height="4880" alt="Mermaid Chart - Create complex, visual diagrams with text -2026-02-03-165331" src="https://github.com/user-attachments/assets/c8ebfc13-1323-4806-965d-45989f707435" />
+</div>
 
 ### AWS Infrastructure
 
@@ -98,64 +67,9 @@ stateDiagram-v2
 
 ### Database Schema
 
-```mermaid
-erDiagram
-    users ||--o{ accounts : "owns"
-    users ||--o{ jobs : "requests"
-    accounts ||--o{ positions : "contains"
-    positions }o--|| instruments : "references"
-
-    users {
-        varchar clerk_user_id PK
-        varchar display_name
-        integer years_until_retirement
-        decimal target_retirement_income
-        jsonb asset_class_targets
-        jsonb region_targets
-    }
-
-    accounts {
-        uuid id PK
-        varchar clerk_user_id FK
-        varchar account_name
-        text account_purpose
-        decimal cash_balance
-        decimal cash_interest
-    }
-
-    positions {
-        uuid id PK
-        uuid account_id FK
-        varchar symbol FK
-        decimal quantity
-        date as_of_date
-    }
-
-    instruments {
-        varchar symbol PK
-        varchar name
-        varchar instrument_type
-        decimal current_price
-        jsonb allocation_regions
-        jsonb allocation_sectors
-        jsonb allocation_asset_class
-    }
-
-    jobs {
-        uuid id PK
-        varchar clerk_user_id FK
-        varchar job_type
-        varchar status
-        jsonb request_payload
-        jsonb report_payload
-        jsonb charts_payload
-        jsonb retirement_payload
-        jsonb summary_payload
-        text error_message
-        timestamp started_at
-        timestamp completed_at
-    }
-```
+<div align="center">
+<img width="8065" height="4854" alt="Mermaid Chart - Create complex, visual diagrams with text -2026-02-03-161347" src="https://github.com/user-attachments/assets/5ccbed87-e29b-4364-bfb8-717b8a71ed42" />
+</div>
 
 **Schema Design**:
 - **users**: Clerk authentication with retirement goals and target allocations
@@ -221,7 +135,6 @@ alex/
 │   ├── 7_frontend/       # CloudFront, S3, API Gateway
 │   └── 8_enterprise/     # Monitoring and dashboards
 │
-├── guides/                # Step-by-step deployment documentation
 └── scripts/               # Deployment automation
 ```
 
