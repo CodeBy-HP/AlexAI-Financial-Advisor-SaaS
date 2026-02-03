@@ -79,6 +79,36 @@ User Request → API Gateway → Planner Agent (Orchestrator)
               (Project)          (Investigate)     (S3 Vectors)
 ```
 
+### Job Lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> PENDING: User Creates Job
+    PENDING --> STARTED: SQS Triggers Planner
+    STARTED --> TAGGING: Missing Instrument Data
+    STARTED --> ANALYZING: All Data Present
+    TAGGING --> ANALYZING: Tagging Complete
+    
+    ANALYZING --> GENERATING: Parallel Agents Start
+    GENERATING --> FINALIZING: All Agents Complete
+    FINALIZING --> COMPLETE: Results Compiled
+    
+    STARTED --> FAILED: Agent Error
+    ANALYZING --> FAILED: Critical Failure
+    GENERATING --> PARTIAL: Some Agents Fail
+    PARTIAL --> COMPLETE: Salvageable Results
+    
+    COMPLETE --> [*]: Job Delivered
+    FAILED --> [*]: Error Reported
+    
+    note right of GENERATING
+        Report Writer
+        Chart Maker
+        Retirement Specialist
+        (Run in Parallel)
+    end note
+```
+
 ### AWS Infrastructure
 
 - **Compute**: AWS Lambda (6 functions), App Runner (Researcher service)
