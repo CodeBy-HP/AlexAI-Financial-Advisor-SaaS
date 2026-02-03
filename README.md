@@ -96,6 +96,74 @@ stateDiagram-v2
 - **Frontend**: CloudFront + S3, API Gateway
 - **Monitoring**: CloudWatch, LangFuse (observability)
 
+### Database Schema
+
+```mermaid
+erDiagram
+    users ||--o{ accounts : "owns"
+    users ||--o{ jobs : "requests"
+    accounts ||--o{ positions : "contains"
+    positions }o--|| instruments : "references"
+
+    users {
+        varchar clerk_user_id PK
+        varchar display_name
+        integer years_until_retirement
+        decimal target_retirement_income
+        jsonb asset_class_targets
+        jsonb region_targets
+    }
+
+    accounts {
+        uuid id PK
+        varchar clerk_user_id FK
+        varchar account_name
+        text account_purpose
+        decimal cash_balance
+        decimal cash_interest
+    }
+
+    positions {
+        uuid id PK
+        uuid account_id FK
+        varchar symbol FK
+        decimal quantity
+        date as_of_date
+    }
+
+    instruments {
+        varchar symbol PK
+        varchar name
+        varchar instrument_type
+        decimal current_price
+        jsonb allocation_regions
+        jsonb allocation_sectors
+        jsonb allocation_asset_class
+    }
+
+    jobs {
+        uuid id PK
+        varchar clerk_user_id FK
+        varchar job_type
+        varchar status
+        jsonb request_payload
+        jsonb report_payload
+        jsonb charts_payload
+        jsonb retirement_payload
+        jsonb summary_payload
+        text error_message
+        timestamp started_at
+        timestamp completed_at
+    }
+```
+
+**Schema Design**:
+- **users**: Clerk authentication with retirement goals and target allocations
+- **accounts**: Investment accounts (401k, IRA, taxable) with cash positions
+- **positions**: Holdings per account with quantity and valuation date
+- **instruments**: Shared ETF/stock reference data with JSONB allocation metadata
+- **jobs**: Async analysis tracking with dedicated JSONB fields per agent output (no merging logic needed)
+
 ---
 
 ## 🛠️ Tech Stack
