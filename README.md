@@ -23,43 +23,28 @@ Built on AWS serverless with Terraform, powered by Azure OpenAI GPT-4o, and runn
 
 ---
 
-## ✨ Key Features
+## ✨ Core Features
 
-### 🤖 **MULTI-AGENT ORCHESTRATION**
-- 5 specialized AI agents working in concert
+### 🤖 **INTELLIGENT MULTI-AGENT ORCHESTRATION**
+- 5 specialized AI agents collaborating through SQS messaging
 - Azure OpenAI GPT-4o powering intelligent analysis
-- Orchestrated workflows with SQS messaging
-- Parallel processing for optimal performance
+- Parallel Lambda execution for 3x faster processing
+- Autonomous research with Tavily API integration
+- Each agent focused, independent, unified insights
 
-### 💰 **COST-OPTIMIZED VECTOR SEARCH**
-- S3 Vectors for 90% cost reduction vs traditional solutions
-- SageMaker Serverless embeddings (all-MiniLM-L6-v2)
-- Sub-second similarity search at scale
-- Zero minimum charges with pay-per-use model
+### ⚡ **PRODUCTION-GRADE INFRASTRUCTURE**
+- 100% Terraform-managed serverless AWS architecture
+- S3 Vectors for 90% cost reduction vs traditional vector DBs
+- Aurora Serverless v2, Lambda, App Runner, SageMaker embeddings
+- CloudWatch observability + LangFuse agent tracing
+- Zero servers, automatic scaling, pay-per-use
 
-### 🌐 **REAL-TIME WEB RESEARCH**
-- Tavily API integration for current market data
-- Automated research scheduling via EventBridge
-- Document ingestion and knowledge base management
-- Context-aware financial analysis
-
-### 🏗️ **PRODUCTION INFRASTRUCTURE**
-- 100% Terraform-managed AWS resources
-- Serverless architecture (Lambda, Aurora Serverless v2, App Runner)
-- Multi-tenant data isolation
-- CloudWatch monitoring and observability
-
-### 🔐 **ENTERPRISE FEATURES**
-- Clerk authentication and user management
+### 🔐 **ENTERPRISE-READY FULL-STACK**
+- Next.js 15 + React 19 with TypeScript and Framer Motion
+- Clerk authentication with multi-tenant PostgreSQL isolation
 - API Gateway with key-based security
-- PostgreSQL database with user-level isolation
-- CloudFront CDN for global content delivery
-
-### 🎨 **MODERN FULL-STACK APPLICATION**
-- Next.js 15 with TypeScript
-- React 19 with Framer Motion animations
-- Real-time streaming responses
-- Responsive Recharts visualizations
+- Real-time streaming responses and CloudFront CDN
+- EventBridge automated research scheduling (every 2 hours)
 
 ---
 
