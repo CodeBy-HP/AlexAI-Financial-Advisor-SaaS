@@ -1,0 +1,2 @@
+# Invoke the endpoint and output directly to console
+aws sagemaker-runtime invoke-endpoint --endpoint-name alex-embedding-endpoint --content-type application/json --body fileb://vectorize_me.json --output json /dev/stdout
