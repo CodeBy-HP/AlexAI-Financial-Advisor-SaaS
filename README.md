@@ -50,19 +50,11 @@ Built on AWS serverless with Terraform, powered by Azure OpenAI GPT-4o, and runn
 
 ## 🏛️ System Architecture
 
-### Agent Workflow
+### AWS Services Workflow
 
-```
-User Request → API Gateway → Planner Agent (Orchestrator)
-                                    ↓
-                    ┌───────────────┼───────────────┐
-                    ↓               ↓               ↓
-               Tagger Agent    Reporter Agent   Charter Agent
-              (Classify)       (Analyze)        (Visualize)
-                    ↓               ↓               ↓
-              Retirement Agent ← Research Agent → Knowledge Base
-              (Project)          (Investigate)     (S3 Vectors)
-```
+<div align="center">
+<img width="2174" height="1784" alt="aws diagram drawio (1)" src="https://github.com/user-attachments/assets/25fd1db6-0f74-408b-ab91-77773b12442a" />
+</div>
 
 ### Job Lifecycle
 
@@ -196,24 +188,6 @@ The entire AWS infrastructure is managed through **Terraform modules**, deployed
 - **Retirement**: Projects retirement scenarios with Monte Carlo simulations
 - **Researcher**: Conducts autonomous web research using Tavily API
 
-### Key Technical Decisions
-
-**Why Azure OpenAI GPT-4o?**
-- Superior reasoning capabilities for financial analysis
-- Cost-effective pricing model
-- Chat Completions API for agent framework compatibility
-
-**Why Tavily API?**
-- Production-grade web search with financial data focus
-- Real-time market information retrieval
-- Structured JSON responses perfect for agent consumption
-
-**Why S3 Vectors?**
-- 90% cost reduction compared to OpenSearch/Pinecone
-- Native AWS integration, no vendor lock-in
-- Sub-second query performance
-- Automatic optimization and scaling
-
 ---
 
 ## 📊 What I Built
@@ -293,7 +267,7 @@ The entire AWS infrastructure is managed through **Terraform modules**, deployed
 
 **Harsh Patel**  
 📧 code.by.hp@gmail.com  
-🔗 [GitHub](https://github.com/yourusername) • [LinkedIn](https://linkedin.com/in/yourprofile)
+🔗 [GitHub](https://github.com/CodeBy-HP) • [LinkedIn](https://www.linkedin.com/in/harsh-patel-389593292/)
 
 ---
 
