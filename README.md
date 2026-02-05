@@ -252,6 +252,15 @@ The entire AWS infrastructure is managed through **Terraform modules**, deployed
 
 ---
 
+## 🎓 Special Thanks
+
+A big thank you to **Ed Donner** for his excellent **MLOps Track**, which played a key role in shaping this project and my understanding of building production-grade, agentic AI systems.
+
+📘 **Course:** Generative and Agentic AI in Production  
+🔗 https://www.udemy.com/course/generative-and-agentic-ai-in-production/
+
+---
+
 <div align="center">
 
 **⭐ Star this repo if you found it insightful**
